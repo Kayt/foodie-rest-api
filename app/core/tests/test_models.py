@@ -4,9 +4,9 @@ from django.contrib.auth import get_user_model
 from core import models
 
 
-def sample_user(emai='test@closinbrace.com', password='testpass'):
+def sample_user(email='test@closinbrace.com', password='testpass'):
     """Create a simple user"""
-    return get_user_model().create_user(email, password)
+    return get_user_model().objects.create_user(email, password)
 
 
 class ModelTests(TestCase):
