@@ -45,3 +45,13 @@ class RecipieViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Retrieve recipies for authenticated user"""
         return self.queryset.filter(user=self.request.user)
+    
+    def get_serializer_class(self):
+        """Return appropriate serializer class"""
+        if self.action == 'retrieve':
+            return serializers.RecipieDetailSerializer
+        return self.serializer_class
+    
+    def perform_create(self, serializer):
+        """Create a new recipie"""
+        serializer.save(user=self.request.user)
